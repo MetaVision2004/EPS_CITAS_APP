@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %}Registrar Paciente — EPS CitaMed{% endblock %}
+
+{% block content %}
+<div class="form-page">
+    <div class="form-header">
+        <span class="form-icon">👤</span>
+        <h2>Registro de Paciente</h2>
+        <p>Ingresa los datos del paciente para registrarlo en el sistema.</p>
+    </div>
+
+    <form class="card-form" method="POST" action="{{ url_for('registro_paciente') }}">
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="documento">N° de Identificación</label>
+                <input type="text" id="documento" name="documento" placeholder="Ej: 1234567890" required>
+            </div>
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Ej: Juan" required>
+            </div>
+            <div class="form-group">
+                <label for="apellido">Apellido</label>
+                <input type="text" id="apellido" name="apellido" placeholder="Ej: Pérez" required>
+            </div>
+            <div class="form-group">
+                <label for="telefono">Teléfono</label>
+                <input type="tel" id="telefono" name="telefono" placeholder="Ej: 3001234567" required>
+            </div>
+            <div class="form-group">
+                <label for="correo">Correo Electrónico</label>
+                <input type="email" id="correo" name="correo" placeholder="correo@ejemplo.com" required>
+            </div>
+            <div class="form-group">
+                <label for="eps">EPS Asignada</label>
+                <select id="eps" name="eps" required>
+                    <option value="">— Seleccionar EPS —</option>
+                    <option>Sura</option>
+                    <option>Sanitas</option>
+                    <option>Nueva EPS</option>
+                    <option>Compensar</option>
+                    <option>Cafesalud</option>
+                    <option>Coosalud</option>
+                    <option>Famisanar</option>
+                    <option>Salud Total</option>
+                    <option>Medimás</option>
+                    <option>Coomeva</option>
+                    <option>Mutual Ser</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-actions">
+            <a href="{{ url_for('index') }}" class="btn btn-outline">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Registrar Paciente</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block title %}Resultado — EPS CitaMed{% endblock %}
+
+{% block content %}
+<div class="results-page">
+    <div class="results-header">
+        <h2>Citas de <strong>{{ citas[0].nombre }} {{ citas[0].apellido }}</strong></h2>
+        <p>{{ citas|length }} cita(s) encontrada(s)</p>
+    </div>
+
+    <div class="citas-grid">
+        {% for cita in citas %}
+        <div class="cita-card">
+            <div class="cita-card-top">
+                <div class="badges">
+                    <span class="tipo-badge tipo-{{ cita.tipo_cita | lower | replace('ó','o') }}">{{ cita.tipo_cita }}</span>
+                    <span class="estado-badge estado-{{ cita.estado | lower }}">{{ cita.estado }}</span>
+                </div>
+                <span class="cita-id">#{{ cita.id }}</span>
+            </div>
+<style>
+/* Estilos para los badges de estado en resultados */
+.estado-badge {
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+.estado-pendiente { background: #fff3cd; color: #856404; }
+.estado-confirmada { background: #d4edda; color: #155724; }
+.estado-cancelada { background: #f8d7da; color: #721c24; }
+.badges { display: flex; gap: 8px; }
+</style>
+            <div class="cita-medico">
+                <span class="medico-avatar">🩺</span>
+                <div>
+                    <p class="medico-label">Médico</p>
+                    <p class="medico-name">{{ cita.medico }}</p>
+                </div>
+            </div>
+            <div class="cita-details">
+                <div class="detail-item">
+                    <span class="detail-icon">📅</span>
+                    <div>
+                        <p class="detail-label">Fecha</p>
+                        <p class="detail-value">{{ cita.fecha }}</p>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-icon">🕘</span>
+                    <div>
+                        <p class="detail-label">Hora</p>
+                        <p class="detail-value">{{ cita.hora }}</p>
+                    </div>
+                </div>
+                <div class="detail-item full">
+                    <span class="detail-icon">📍</span>
+                    <div>
+                        <p class="detail-label">Dirección EPS</p>
+                        <p class="detail-value">{{ cita.direccion_eps }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="cita-actions">
+                <a href="{{ url_for('actualizar_cita', cita_id=cita.id) }}" class="btn btn-sm btn-outline">✏ Actualizar</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="results-footer">
+        <a href="{{ url_for('consulta_cita') }}" class="btn btn-outline">← Nueva consulta</a>
+        <a href="{{ url_for('reservar_cita') }}" class="btn btn-primary">+ Reservar otra cita</a>
+    </div>
+</div>
+{% endblock %}

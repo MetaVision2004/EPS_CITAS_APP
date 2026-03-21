@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}Inicio — EPS CitaMed{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <p class="hero-label">Sistema de Gestión</p>
+        <h1 class="hero-title">Citas Médicas<br><em>sin complicaciones</em></h1>
+        <p class="hero-sub">Registra pacientes, reserva y consulta citas médicas de manera rápida y segura.</p>
+        <div class="hero-actions">
+            <a href="{{ url_for('reservar_cita') }}" class="btn btn-primary">Reservar Cita</a>
+            <a href="{{ url_for('consulta_cita') }}" class="btn btn-outline">Consultar Cita</a>
+        </div>
+    </div>
+    <div class="hero-visual">
+        <div class="hero-card">
+            <div class="hc-header">
+                <span class="hc-dot red"></span>
+                <span class="hc-dot yellow"></span>
+                <span class="hc-dot green"></span>
+            </div>
+            <div class="hc-body">
+                <p class="hc-label">Próxima cita</p>
+                <p class="hc-name">Dr. Andrés Ramírez</p>
+                <p class="hc-type">Medicina General</p>
+                <div class="hc-row">
+                    <span>📅 15 Jul 2026</span>
+                    <span>🕘 09:30 AM</span>
+                </div>
+                <div class="hc-badge">Confirmada</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="features">
+    <div class="feature-card">
+        <div class="feat-icon">👤</div>
+        <h3>Registro de Pacientes</h3>
+        <p>Registra los datos completos del paciente de forma rápida y segura.</p>
+        <a href="{{ url_for('registro_paciente') }}" class="feat-link">Registrar →</a>
+    </div>
+    <div class="feature-card">
+        <div class="feat-icon">📅</div>
+        <h3>Reservar Cita</h3>
+        <p>Asigna médico, tipo de cita, fecha y hora en segundos.</p>
+        <a href="{{ url_for('reservar_cita') }}" class="feat-link">Reservar →</a>
+    </div>
+    <div class="feature-card">
+        <div class="feat-icon">🔍</div>
+        <h3>Consultar Cita</h3>
+        <p>Consulta tus citas activas ingresando tu número de documento.</p>
+        <a href="{{ url_for('consulta_cita') }}" class="feat-link">Consultar →</a>
+    </div>
+</section>
+{% endblock %}

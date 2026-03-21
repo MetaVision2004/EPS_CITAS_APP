@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block title %}Actualizar Cita — EPS CitaMed{% endblock %}
+
+{% block content %}
+<div class="form-page">
+    <div class="form-header">
+        <span class="form-icon">✏️</span>
+        <h2>Actualizar Cita Médica</h2>
+        <p>Modifica los detalles de la cita seleccionada.</p>
+    </div>
+
+    <form class="card-form" method="POST" action="{{ url_for('actualizar_cita', cita_id=cita.id) }}">
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="documento">Documento del Paciente</label>
+                <input type="text" id="documento" value="{{ cita.documento }}" disabled>
+                <small>El documento no se puede modificar.</small>
+            </div>
+            <div class="form-group">
+                <label for="medico">Médico Asignado</label>
+                <select id="medico" name="medico" required>
+                    <option value="">— Seleccionar Médico —</option>
+                    <option value="Dr. Andrés Ramírez" {% if 'Andrés Ramírez' in cita.medico %}selected{% endif %}>Dr. Andrés Ramírez</option>
+                    <option value="Dra. Claudia López" {% if 'Claudia López' in cita.medico %}selected{% endif %}>Dra. Claudia López</option>
+                    <option value="Dr. Roberto Mendoza" {% if 'Roberto Mendoza' in cita.medico %}selected{% endif %}>Dr. Roberto Mendoza</option>
+                    <option value="Dra. Elena Gómez" {% if 'Elena Gómez' in cita.medico %}selected{% endif %}>Dra. Elena Gómez</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tipo_cita">Tipo de Cita</label>
+                <select id="tipo_cita" name="tipo_cita" required>
+                    <option value="Medicina General" {% if cita.tipo_cita == 'Medicina General' %}selected{% endif %}>Medicina General</option>
+                    <option value="Pediatría" {% if cita.tipo_cita == 'Pediatría' %}selected{% endif %}>Pediatría</option>
+                    <option value="Ginecología" {% if cita.tipo_cita == 'Ginecología' %}selected{% endif %}>Ginecología</option>
+                    <option value="Cardiología" {% if cita.tipo_cita == 'Cardiología' %}selected{% endif %}>Cardiología</option>
+                    <option value="Odontología" {% if cita.tipo_cita == 'Odontología' %}selected{% endif %}>Odontología</option>
+                    <option value="Fisioterapia" {% if cita.tipo_cita == 'Fisioterapia' %}selected{% endif %}>Fisioterapia</option>
+                    <option value="Psicología" {% if cita.tipo_cita == 'Psicología' %}selected{% endif %}>Psicología</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="fecha">Fecha de la Cita</label>
+                <input type="date" id="fecha" name="fecha" value="{{ cita.fecha }}" required>
+            </div>
+            <div class="form-group">
+                <label for="hora">Hora de la Cita</label>
+                <input type="time" id="hora" name="hora" value="{{ cita.hora }}" required>
+            </div>
+            <div class="form-group">
+                <label for="estado">Estado de la Cita</label>
+                <select id="estado" name="estado" required>
+                    <option value="Pendiente" {% if cita.estado == 'Pendiente' %}selected{% endif %}>🟡 Pendiente</option>
+                    <option value="Confirmada" {% if cita.estado == 'Confirmada' %}selected{% endif %}>🟢 Confirmada</option>
+                    <option value="Cancelada" {% if cita.estado == 'Cancelada' %}selected{% endif %}>🔴 Cancelada</option>
+                </select>
+            </div>
+<style>
+/* Estilos rápidos para diferenciar estados */
+select#estado option[value="Confirmada"] { color: #2ecc71; }
+select#estado option[value="Pendiente"] { color: #f1c40f; }
+select#estado option[value="Cancelada"] { color: #e74c3c; }
+</style>
+            <div class="form-group full-width">
+                <label for="direccion_eps">Dirección de la EPS</label>
+                <input type="text" id="direccion_eps" value="{{ cita.direccion_eps }}" disabled>
+            </div>
+        </div>
+        <div class="form-actions">
+            <a href="{{ url_for('consulta_cita') }}" class="btn btn-outline">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

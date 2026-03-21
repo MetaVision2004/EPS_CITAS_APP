@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block title %}Reservar Cita — EPS CitaMed{% endblock %}
+
+{% block content %}
+<div class="form-page">
+    <div class="form-header">
+        <span class="form-icon">📅</span>
+        <h2>Reservar Cita Médica</h2>
+        <p>El paciente debe estar registrado previamente en el sistema.</p>
+    </div>
+
+    <form class="card-form" method="POST" action="{{ url_for('reservar_cita') }}">
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="documento">Documento del Paciente</label>
+                <input type="text" id="documento" name="documento" placeholder="Ej: 1234567890" required>
+            </div>
+            <div class="form-group">
+                <label for="medico">Médico Asignado</label>
+                <select id="medico" name="medico" required>
+                    <option value="">— Seleccionar Médico —</option>
+                    <option value="Dr. Andrés Ramírez">Dr. Andrés Ramírez</option>
+                    <option value="Dra. Claudia López">Dra. Claudia López</option>
+                    <option value="Dr. Roberto Mendoza">Dr. Roberto Mendoza</option>
+                    <option value="Dra. Elena Gómez">Dra. Elena Gómez</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tipo_cita">Tipo de Cita</label>
+                <select id="tipo_cita" name="tipo_cita" required>
+                    <option value="">— Seleccionar tipo —</option>
+                    <option value="Medicina General">Medicina General</option>
+                    <option value="Pediatría">Pediatría</option>
+                    <option value="Ginecología">Ginecología</option>
+                    <option value="Cardiología">Cardiología</option>
+                    <option value="Odontología">Odontología</option>
+                    <option value="Fisioterapia">Fisioterapia</option>
+                    <option value="Psicología">Psicología</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="fecha">Fecha de la Cita</label>
+                <input type="date" id="fecha" name="fecha" required>
+            </div>
+            <div class="form-group">
+                <label for="hora">Hora de la Cita</label>
+                <input type="time" id="hora" name="hora" required>
+            </div>
+            <div class="form-group">
+                <label for="estado">Estado Inicial</label>
+                <select id="estado" name="estado" required>
+                    <option value="Pendiente" selected>🟡 Pendiente</option>
+                    <option value="Confirmada">🟢 Confirmada</option>
+                </select>
+            </div>
+            <div class="form-group full-width">
+                <label for="direccion_eps">Dirección de la EPS</label>
+                <input type="text" id="direccion_eps" name="direccion_eps" placeholder="Ej: Calle 45 # 12-30, Barranquilla" required>
+            </div>
+        </div>
+        <div class="form-actions">
+            <a href="{{ url_for('index') }}" class="btn btn-outline">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Reservar Cita</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

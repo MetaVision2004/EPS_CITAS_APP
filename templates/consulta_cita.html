@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Consultar Cita — EPS CitaMed{% endblock %}
+
+{% block content %}
+<div class="form-page narrow">
+    <div class="form-header">
+        <span class="form-icon">🔍</span>
+        <h2>Consultar Cita Médica</h2>
+        <p>Ingresa tu número de documento para ver tus citas registradas.</p>
+    </div>
+
+    <form class="card-form" method="POST" action="{{ url_for('consulta_cita') }}">
+        <div class="form-group">
+            <label for="documento">Número de Documento</label>
+            <input type="text" id="documento" name="documento" placeholder="Ej: 1234567890" required autofocus>
+        </div>
+        <div class="form-actions centered">
+            <button type="submit" class="btn btn-primary">Buscar Citas</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
