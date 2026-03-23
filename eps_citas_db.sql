@@ -34,18 +34,19 @@ CREATE TABLE `citas` (
   `tipo_cita` varchar(50) DEFAULT NULL,
   `fecha` date DEFAULT NULL,
   `hora` time DEFAULT NULL,
-  `direccion_eps` varchar(150) DEFAULT NULL
+  `direccion_eps` varchar(150) DEFAULT NULL,
+  `estado` varchar(20) DEFAULT 'Pendiente'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `citas`
 --
 
-INSERT INTO `citas` (`id`, `documento`, `medico`, `tipo_cita`, `fecha`, `hora`, `direccion_eps`) VALUES
-(1, '123456789', 'Dr. Andrés Ramírez', 'General', '2026-03-25', '09:30:00', 'Calle 45 # 12-30, Barranquilla'),
-(2, '123456789', 'Dra. Claudia López', 'Odontología', '2026-04-02', '14:00:00', 'Calle 72 # 54-15, Barranquilla'),
-(3, '987654321', 'Dr. Roberto Mendoza', 'General', '2026-03-22', '11:15:00', 'Carrera 53 # 82-10, Barranquilla'),
-(4, '1234567890', 'DR ramirez', 'General', '2026-03-25', '11:50:00', 'calle');
+INSERT INTO `citas` (`id`, `documento`, `medico`, `tipo_cita`, `fecha`, `hora`, `direccion_eps`, `estado`) VALUES
+(1, '123456789', 'Dr. Andrés Ramírez', 'General', '2026-03-25', '09:30:00', 'Calle 45 # 12-30, Barranquilla', 'Confirmada'),
+(2, '123456789', 'Dra. Claudia López', 'Odontología', '2026-04-02', '14:00:00', 'Calle 72 # 54-15, Barranquilla', 'Pendiente'),
+(3, '987654321', 'Dr. Roberto Mendoza', 'General', '2026-03-22', '11:15:00', 'Carrera 53 # 82-10, Barranquilla', 'Confirmada'),
+(4, '1234567890', 'DR ramirez', 'General', '2026-03-25', '11:50:00', 'calle', 'Pendiente');
 
 -- --------------------------------------------------------
 

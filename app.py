@@ -94,12 +94,16 @@ def consulta_cita():
             flash('Ingrese un número de documento.', 'danger')
             return render_template('consulta_cita.html')
 
-        resultados = Cita.consultar(documento)
-        if not resultados:
-            flash('No se encontraron citas para ese documento.', 'warning')
-            return render_template('consulta_cita.html')
+        try:
+            resultados = Cita.consultar(documento)
+            if not resultados:
+                flash('No se encontraron citas para ese documento.', 'warning')
+                return render_template('consulta_cita.html')
 
-        return render_template('resultado_cita.html', citas=resultados)
+            return render_template('resultado_cita.html', citas=resultados)
+        except Exception as e:
+            flash(f'Error al consultar citas: {str(e)}', 'danger')
+            return render_template('consulta_cita.html')
 
     return render_template('consulta_cita.html')
 
