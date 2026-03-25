@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, render_template, request, redirect, url_for, flash
 from config import Config
 from models.pacientes import Paciente
@@ -158,4 +160,5 @@ def actualizar_cita(cita_id):
 # ─── Main ──────────────────────────────────────────────────────────────────────
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host='mysql.railway.internal', port=3306, debug=False)
