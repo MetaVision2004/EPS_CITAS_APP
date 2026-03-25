@@ -26,6 +26,23 @@
                 </select>
             </div>
             <div class="form-group">
+                <label for="eps">EPS</label>
+                <select id="eps" name="eps" required>
+                    <option value="">— Seleccionar EPS —</option>
+                    <option value="Sura">Sura</option>
+                    <option value="Sanitas">Sanitas</option>
+                    <option value="Nueva EPS">Nueva EPS</option>
+                    <option value="Compensar">Compensar</option>
+                    <option value="Salud Total">Salud Total</option>
+                    <option value="Coosalud">Coosalud</option>
+                    <option value="Famisanar">Famisanar</option>
+                    <option value="Cafesalud">Cafesalud</option>
+                    <option value="Medimás">Medimás</option>
+                    <option value="Coomeva">Coomeva</option>
+                    <option value="Mutual Ser">Mutual Ser</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="tipo_cita">Tipo de Cita</label>
                 <select id="tipo_cita" name="tipo_cita" required>
                     <option value="">— Seleccionar tipo —</option>
@@ -55,7 +72,7 @@
             </div>
             <div class="form-group full-width">
                 <label for="direccion_eps">Dirección de la EPS</label>
-                <input type="text" id="direccion_eps" name="direccion_eps" placeholder="Ej: Calle 45 # 12-30, Barranquilla" required>
+                <input type="text" id="direccion_eps" name="direccion_eps" placeholder="Se autocompleta según EPS" readonly required>
             </div>
         </div>
         <div class="form-actions">

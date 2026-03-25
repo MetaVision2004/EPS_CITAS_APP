@@ -66,9 +66,10 @@ def reservar_cita():
         tipo_cita     = request.form['tipo_cita']
         fecha         = request.form['fecha']
         hora          = request.form['hora']
+        eps           = request.form.get('eps', '').strip()
         direccion_eps = request.form['direccion_eps'].strip()
 
-        if not all([documento, medico, tipo_cita, fecha, hora, direccion_eps]):
+        if not all([documento, medico, tipo_cita, fecha, hora, eps, direccion_eps]):
             flash('Todos los campos son obligatorios.', 'danger')
             return render_template('reservar_cita.html')
 
