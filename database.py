@@ -7,6 +7,6 @@ def get_connection():
         port=Config.MYSQL_PORT,
         user=Config.MYSQL_USER,
         password=Config.MYSQL_PASSWORD,
-        database=Config.MYSQL_DB
+        database=Config.MYSQL_DATABASE
     )
     return conexion
