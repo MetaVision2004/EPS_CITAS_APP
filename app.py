@@ -160,5 +160,5 @@ def actualizar_cita(cita_id):
 # ─── Main ──────────────────────────────────────────────────────────────────────
 
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 3306))
-    app.run(host='mysql.railway.internal', port=3306, debug=False)
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host='0.0.0.0', port=port, debug=False)
