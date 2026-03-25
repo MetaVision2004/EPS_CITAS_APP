@@ -37,7 +37,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (epsSelect && direccionInput) {
         epsSelect.addEventListener('change', () => {
             const epsValue = epsSelect.value;
+            if (epsValue === 'Otra') {
+                direccionInput.value = '';
+                direccionInput.removeAttribute('readonly');
+                direccionInput.placeholder = 'Escribe la dirección manualmente';
+                return;
+            }
+
             direccionInput.value = DIRECCIONES_EPS[epsValue] || '';
+            direccionInput.setAttribute('readonly', 'readonly');
+            direccionInput.placeholder = 'Se autocompleta según EPS';
         });
     }
 
@@ -52,8 +61,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (data.success && data.eps) {
                         if (DIRECCIONES_EPS[data.eps]) {
                             epsSelect.value = data.eps;
-                            direccionInput.value = DIRECCIONES_EPS[data.eps];
+                            const changeEvent = new Event('change');
+                            epsSelect.dispatchEvent(changeEvent);
                         } else {
+                            epsSelect.value = 'Otra';
+                            direccionInput.removeAttribute('readonly');
                             direccionInput.value = data.direccion || '';
                         }
                     }

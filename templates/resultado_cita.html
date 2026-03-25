@@ -14,7 +14,7 @@
             <div class="cita-card-top">
                 <div class="badges">
                     <span class="tipo-badge tipo-{{ cita.tipo_cita | lower | replace('ó','o') }}">{{ cita.tipo_cita }}</span>
-                    <span class="estado-badge estado-{{ cita.estado | lower }}">{{ cita.estado }}</span>
+                    <span class="estado-badge estado-{{ cita.estado | lower | replace('ó','o') | replace(' ', '-') }}">{{ cita.estado }}</span>
                 </div>
                 <span class="cita-id">#{{ cita.id }}</span>
             </div>

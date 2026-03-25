@@ -77,6 +77,17 @@ def reservar_cita():
             flash('No existe un paciente con ese número de documento. Regístrelo primero.', 'warning')
             return render_template('reservar_cita.html')
 
+        paciente = Paciente.obtener_por_documento(documento)
+        if paciente:
+            paciente_eps = paciente.get('eps')
+            if paciente_eps and paciente_eps != eps:
+                # Usar EPS de paciente, pero si el usuario eligió otra EPS, se guarda igual (entrada libre)
+                # Dirección se completa por EPS seleccionado cuando exista
+                pass
+
+            # Si no existe dirección definida para EPS seleccionada, usar la del paciente
+            direccion_eps = DIRECCIONES_EPS.get(eps) or DIRECCIONES_EPS.get(paciente_eps, direccion_eps)
+
         try:
             estado = request.form.get('estado', 'Pendiente')
             Cita.reservar(documento, medico, tipo_cita, fecha, hora, direccion_eps, estado)
