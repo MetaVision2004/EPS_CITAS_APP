@@ -13,7 +13,7 @@
         <div class="form-grid">
             <div class="form-group">
                 <label for="documento">N° de Identificación</label>
-                <input type="text" id="documento" name="documento" placeholder="Ej: 1234567890" required>
+                <input type="text" id="documento" name="documento" placeholder="Ej: 1234567890" pattern="[0-9]{8,10}" title="Debe contener entre 8 y 10 dígitos numéricos" required>
             </div>
             <div class="form-group">
                 <label for="nombre">Nombre</label>
@@ -29,7 +29,7 @@
             </div>
             <div class="form-group">
                 <label for="correo">Correo Electrónico</label>
-                <input type="email" id="correo" name="correo" placeholder="correo@ejemplo.com" required>
+                <input type="email" id="correo" name="correo" placeholder="correo@ejemplo.com" title="Por favor ingresa un correo electrónico válido" required>
             </div>
             <div class="form-group">
                 <label for="eps">EPS Asignada</label>
