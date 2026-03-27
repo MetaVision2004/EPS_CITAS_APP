@@ -68,10 +68,9 @@ def reservar_cita():
         tipo_cita     = request.form['tipo_cita']
         fecha         = request.form['fecha']
         hora          = request.form['hora']
-        eps           = request.form.get('eps', '').strip()
-        direccion_eps = request.form['direccion_eps'].strip()
+        eps = request.form.get('eps', '').strip()
 
-        if not all([documento, medico, tipo_cita, fecha, hora, eps, direccion_eps]):
+        if not all([documento, medico, tipo_cita, fecha, hora, eps]):
             flash('Todos los campos son obligatorios.', 'danger')
             return render_template('reservar_cita.html')
 
@@ -80,15 +79,10 @@ def reservar_cita():
             return render_template('reservar_cita.html')
 
         paciente = Paciente.obtener_por_documento(documento)
-        if paciente:
-            paciente_eps = paciente.get('eps')
-            if paciente_eps and paciente_eps != eps:
-                # Usar EPS de paciente, pero si el usuario eligió otra EPS, se guarda igual (entrada libre)
-                # Dirección se completa por EPS seleccionado cuando exista
-                pass
+        paciente_eps = paciente.get('eps') if paciente else None
 
-            # Si no existe dirección definida para EPS seleccionada, usar la del paciente
-            direccion_eps = DIRECCIONES_EPS.get(eps) or DIRECCIONES_EPS.get(paciente_eps, direccion_eps)
+        # Determinar dirección de EPS en backend (campo removido de UI)
+        direccion_eps = DIRECCIONES_EPS.get(eps) or DIRECCIONES_EPS.get(paciente_eps, '')
 
         try:
             estado = 'Pendiente'
