@@ -91,7 +91,7 @@ def reservar_cita():
             direccion_eps = DIRECCIONES_EPS.get(eps) or DIRECCIONES_EPS.get(paciente_eps, direccion_eps)
 
         try:
-            estado = request.form.get('estado', 'Pendiente')
+            estado = 'Pendiente'
             Cita.reservar(documento, medico, tipo_cita, fecha, hora, direccion_eps, estado)
             flash('¡Cita reservada exitosamente!', 'success')
             return redirect(url_for('index'))
